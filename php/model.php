@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require 'session.php';
 
 if(!$add_limit){
@@ -29,5 +29,5 @@ mysql_query("SET NAMES 'utf8'");
 <a href="editpage.php?id=<?php echo $xh ?>" target="_blank"><button type="submit" name="button0">编辑</button></a>
 $xh=$_GET['id'];
 
-申请 添加删除操作 超级管理员
+申请 添加删除操作 超级管理员 1
 
