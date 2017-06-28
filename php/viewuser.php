@@ -55,17 +55,19 @@ while($row = mysql_fetch_assoc($result)){
 		<td>{$row['name']}</td>
 		<td>{$row['phone']}</td>
 		<td>{$row['role']}</td>
-		<td>{$row['add_limit']}</td>
-		<td>{$row['del_limit']}</td>
-		<td>{$row['port_limit']}</td>
-		<td>{$row['function_limit']}</td>
-		<td>{$row['adduser_limit']}</td>
-		<td>{$row['del_limit']}</td>
-		<td>{$row['limit_limit']}</td>
-		<td>{$row['dyb_limit']}</td>
-		<td>{$row['message_limit']}</td>
-
 TD;
+?>
+		<td><?php if($row['add_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['del_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['port_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['function_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['adduser_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['del_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['limit_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['dyb_limit']){echo "√";}else{echo "x";} ?></td>
+		<td><?php if($row['message_limit']){echo "√";}else{echo "x";} ?></td>
+
+<?php
 }
 }
 @mysql_close();

@@ -12,8 +12,8 @@ header("Content-Type: text/html; charset=UTF-8");
 mysql_query("SET NAMES 'utf8'");
 
 
-
-
+if(!isset($_POST['button0'])){
+$pp = $_POST['pp'];
 
 
 @mysql_close();
