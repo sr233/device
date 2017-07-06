@@ -30,8 +30,8 @@ $resultlx=mysql_query($querylx)
 or die ("3查询失败");
 
 $querywldk= <<<SQL
-	SELECT modelname 
-	FROM tb_model;
+	SELECT port 
+	FROM tb_config;
 SQL;
 $resultwldk=mysql_query($querywldk)
 or die ("4查询失败");
@@ -393,10 +393,76 @@ if(isset($_POST['button'])){
 	$user = $_POST['user'];
 	$zt = $_POST['zt'];
 	$date = $_POST['date'];
+$query0="select id_grand from tb_grand where grandname='$pp'";
+$result0=mysql_query($query0)
+or die ("0查询失败");
+$pp=mysql_fetch_assoc($result0)['id_grand'];
 
+$query1="select id_model from tb_model where modelname='$xh'";
+$result1=mysql_query($query1)
+or die ("1查询失败");
+$xh=mysql_fetch_assoc($result1)['id_model'];
+
+$query2="select id_kinds from tb_kinds where kinds='$lx'";
+$result2=mysql_query($query2)
+or die ("2查询失败");
+$lx=mysql_fetch_assoc($result2)['id_kinds'];
+
+
+$query3="select id_config from tb_config where cpu_num='$ks' and cpu_core='$hx' and	ram='$ram' and store='$rom' and netcard='$netcard' and hba='$hba' and port='$wldk'";
+$result3=mysql_query($query3);
+if($result3){
+	$pz=mysql_fetch_assoc($result3)['id_config'];
+}else{
+	$queryi0="insert into tb_config(cpu_num,cpu_core,ram,store,netcard,port,hba) values('$ks','$hx','$ram','$rom','netcard','$wldk','hba')";
+	mysql_query($queryi0);
+	$query3="select id_config from tb_config where cpu_num='$ks' and cpu_core='$hx' and	ram='$ram' and store='$rom' and netcard='$netcard' and hba='$hba' and port='$wldk'";
+	$result3=mysql_query($query3);
+	$pz=mysql_fetch_assoc($result3)['id_config'];
+}
+// or die ("3查询失败");
+
+$query4="select id_location from tb_location where location='$location' and louclie='$ceng' ";
+$result4=mysql_query($query4);
+if($result4){
+	$wz=mysql_fetch_assoc($result4)['id_location'];
+}else{
+	$queryi1="insert into tb_location(location,louclie) values('$location','$ceng')";
+	mysql_query($queryi1);
+	$query4="select id_location from tb_location where location='$location' and louclie='$ceng' ";
+	$result4=mysql_query($query4);	
+	$wz=mysql_fetch_assoc($result4)['id_location'];
+}
+// echo $wz=mysql_fetch_assoc($result4)['id_location'];
+
+$query5="select id_danwei from tb_danwei where danwei='$danwei' ";
+$result5=mysql_query($query5)
+or die ("5查询失败");
+$dw=mysql_fetch_assoc($result5)['id_danwei'];
+
+$query6="select id_user from tb_admin where name='$user' ";
+$result6=mysql_query($query6)
+or die ("6查询失败");
+$yh=mysql_fetch_assoc($result6)['id_user'];
+
+$query7="select id_status from tb_status where status='$zt'";
+$result7=mysql_query($query7)
+or die ("7查询失败");
+$zt=mysql_fetch_assoc($result7)['id_status'];
+
+
+
+$queryinsert= <<<SQL
+	INSERT into tb_device(id_grand,id_model,id_kinds,id_status,id_location,function,ip,domain,openports,id_danwei,id_user,id_config,date)
+	values('$pp','$xh','$lx','$zt','$wz','$gy','$ip','$ym','$kfdk','$dw,','$yh','$pz','$date')	
+
+SQL;
+$resultinsert=mysql_query($queryinsert)
+or die ("设备表插入失败");
 	// echo $pp,$xh,$lx,$gy,$ym,$ip,$kfdk,$wldk,$ks,$hx,$ram,$rom,$netcard,$hba,$location,$ceng,$danwei,$user,$zt,$date;
-
-
+if($resultinsert){
+	echo "<script>alert('添加设备成功');</script>";
+}
 
 
 }

@@ -72,7 +72,7 @@ or die ("4查询失败");
 	}
 
 	table tr:nth-child(odd){background:#BFEFFF;}
-	table tr:nth-child(5){background:#73B1E0;color:#FFF;}
+	table tr:nth-child(5){background:#FFF68F;}
 
 	</style>
 </head>

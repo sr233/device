@@ -77,7 +77,7 @@ SQL;
 			clear:both;
 		}
 		table tr:nth-child(odd){background:#BFEFFF;}
-		table tr:nth-child(5){background:#73B1E0;color:#FFF;}
+		table tr:nth-child(5){background:#FFF68F;}
 
 		</style>
 
@@ -153,7 +153,7 @@ SQL;
 	<div>
 	全选<input type="checkbox" onClick="AllCheck(this.form);return true;" value="" /></div>
 	<div>
-	<button type="submit" name="button1" id=""><b>删除</b></button></div></div>
+	<button type="submit" name="button1" onclick="return confirm('--确认删除--');" id=""><b>删除</b></button></div></div>
 
 	<?php
 	if(!isset($_POST['button0'])){
@@ -165,7 +165,7 @@ SQL;
 	while($row = mysql_fetch_assoc($result)){
 	?>
 				<tr>
-				<td><input type="checkbox" value="<?php echo $row['id_device'];  ?>" /></td>
+				<td><input type="checkbox" name="boxes[]" value="<?php echo $row['id_device'];  ?>" /></td>
 				<td><a href="<?php echo "detail.php?id=".$row['id_device'] ?>"  target="_blank"><?php echo $n;$n=$n+1; ?></a></td>
 				<?php
 				echo <<<TD
@@ -227,7 +227,7 @@ SQL;
 		while($row = mysql_fetch_assoc($result1)){
 	?>
 				<tr>
-				<td><input type="checkbox" value="<?php echo $row['id_device'];  ?>" /></td>
+				<td><input type="checkbox" name="boxes[]" value="<?php echo $row['id_device'];  ?>" /></td>
 				<td><a href="<?php echo "detail.php?id=".$row['id_device'] ?>" ><?php echo $n;$n=$n+1; ?></a></td>
 				<?php
 				echo <<<TD
@@ -265,7 +265,17 @@ TD;
 <?php
 
 /*点击删除，执行数据库操作*/
+if(isset($_POST["button1"])){
+	$arraydel=$_POST["boxes"];
+	for($i=0;$i<count($arraydel);$i++){
+		$val = $arraydel[$i];
+		$querydel = "delete from tb_device where id_device='$val';";
+		mysql_query($querydel);
 
+	} 
+echo "<script>alert('删除成功！');</script>";
+	
+}
 
 
 
