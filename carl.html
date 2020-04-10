@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>卡尔切技能</title>
+    <script src="jquery-1.8.2.min.js"></script>
+</head>
+<body style="background-color: black;">
+
+<div class="keyArea">
+    <div class="ketArea-progress left-float">
+        <p class="curKey">1</p>
+        <p>&nbsp;/&nbsp;</p>
+        <p class="totalNum">100</p>
+    </div>
+    <div class="keyArea-group left-float" style="clear: left;">
+        <!--<div class="single-key">A</div>-->
+        <!--<div class="single-key">B</div>-->
+        <!--<div class="single-key">C</div>-->
+    </div>
+</div>
+
+
+<script>
+
+    let keyGroup = ['r','e','w','t'];
+    let index = 0;
+    $(document).keydown(function (e) {
+        console.log(e.key);
+        let key = e.key;
+        if (key === keyGroup[index]) {
+            $('.keyArea-group').append("<div class=\"single-key\">" + key + "</div>");
+            index　+= 1;
+        }
+    })
+
+</script>
+
+</body>
+</html>
+
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        color: #dedede;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+
+    body > div {
+        float: left;
+    }
+
+    .left-float {
+        float: left;
+    }
+
+    .keyArea {
+        padding-left: 15px;
+    }
+
+    .ketArea-progress p {
+        float: left;
+    }
+
+    .ketArea-progress {
+        margin-left: 15px;
+    }
+
+    .single-key {
+        float: left;
+        border: 1px solid #dedede;
+        border-radius: 50%;
+        margin-right: 15px;
+        height: 35px;
+        width: 45px;
+        text-align: center;
+        padding-top: 10px;
+    }
+</style>
