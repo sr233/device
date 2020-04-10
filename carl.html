@@ -23,14 +23,31 @@
 
 <script>
 
-    let keyGroup = ['r','e','w','t'];
+    let keyGroups = [
+        ['r', 'e', 'w'],
+        ['r', 'r', 'r'],
+        ['r', 'e', 'e'],
+        ['w', 'w', 'e'],
+        ['r', 'e', 'w']
+    ];
+    let i = 0;
+    let groupLength = keyGroups.length;
+    let keyGroup = keyGroups[i];
     let index = 0;
     $(document).keydown(function (e) {
         console.log(e.key);
         let key = e.key;
-        if (key === keyGroup[index]) {
-            $('.keyArea-group').append("<div class=\"single-key\">" + key + "</div>");
-            index　+= 1;
+        if (keyGroup.length > 0 && keyGroup !== null) {
+            let pos = keyGroup.indexOf(key);
+            if (pos >= 0) {
+                $('.keyArea-group').append("<div class=\"single-key\">" + key + "</div>");
+                keyGroup.splice(pos, 1);
+            }
+        } else if (key === 't') {
+            $('.keyArea-group').remove();
+            if (++i < groupLength) {
+                keyGroup = keyGroups[i];
+            }
         }
     })
 
